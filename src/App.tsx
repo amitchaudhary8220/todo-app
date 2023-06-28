@@ -1,24 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Task from "./components/Task";
+import TaskList from "./components/TaskList";
+import Navigation from "./components/Navigation";
+import TaskEdit from "./components/TaskEdit";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navigation />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Task
+              isEdit={false}
+              data={{ title: "", description: "", index: -1 }}
+            />
+          }
+        />
+        <Route path="/list" element={<TaskList />} />
+        <Route path="/edit" element={<TaskEdit />} />
+      </Routes>
     </div>
   );
 }
